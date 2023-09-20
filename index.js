@@ -10,6 +10,8 @@ function background(){
      * alterar o background do body para a cor #BECCC3.
      */
 
+    document.getElementsByTagName("body")[0].style.background = "#BECCC3";
+
 }
 
 /**
@@ -25,6 +27,11 @@ function show(){
       * Recupera os valores dos campos de texto cujo o id='fname' e id='lname' e apresente o nome
       * e o sobrenome de uma pessoa (separado por um espaço) na div id='result'
       */
+
+     const fname = document.getElementById("fname").value;
+     const lname = document.getElementById("lname").value;
+
+     document.getElementById("result").textContent = `${fname} ${lname}`;
 }
 
 /**
@@ -52,6 +59,24 @@ function search(){
      * Além disso, a função removeAllChildren abaixo também pode ser útil para o desenvolvimento da solução
      */
 
+    const name = document.getElementById("name").value.toUpperCase();
+    const divSearch = document.getElementById("search");
+
+    removeAllChildren(divSearch);
+
+    if(name == "") return;
+
+    data.forEach(pessoa => {
+        const nameLen = name.length;
+        const pesNome = pessoa.name.toUpperCase().substring(0, nameLen);
+
+        if(name == pesNome) {
+            const p = document.createElement("p");
+            p.innerHTML = pessoa.name;
+
+            divSearch.appendChild(p);
+        }
+    });
 }
 
 /**
